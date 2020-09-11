@@ -2,16 +2,32 @@ package fr.pantheonsorbonne.ufr27.miage.exercise;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.pantheonsorbonne.ufr27.miage.exercise.coffee.BlackCoffee;
+import fr.pantheonsorbonne.ufr27.miage.exercise.coffee.BlackCoffeeFactory;
 import fr.pantheonsorbonne.ufr27.miage.exercise.coffee.Coffee;
 import fr.pantheonsorbonne.ufr27.miage.exercise.coffee.ExpressoCoffee;
+import fr.pantheonsorbonne.ufr27.miage.exercise.coffee.ExpressoCoffeeFactory;
 
 public class AppTest {
 	
 	private final BlackCoffee blackCoffee = new BlackCoffee();
 	private final ExpressoCoffee expressoCoffee = new ExpressoCoffee();
+	
+	@Before
+	public void setUp() {
+		BlackCoffeeFactory.setInstance(blackCoffee);
+		ExpressoCoffeeFactory.setInstance(expressoCoffee);
+	}
+	
+	@After
+	public void tearDown() {
+		BlackCoffeeFactory.setInstance(null);
+		ExpressoCoffeeFactory.setInstance(null);
+	}
 
 	@Test
 	public void testCase1() {
